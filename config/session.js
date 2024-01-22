@@ -26,11 +26,11 @@ module.exports.session = {
 //  }
 
 //  // uncomment if you use sails-pg-session
-//  postgresql: {
-//      adapter: 'sails-pg-session',
-//      host: 'localhost',
-//      user: 'electron_release_server_user',
-//      password: 'MySecurePassword',
-//      database: 'electron_release_server'
-//  }
+ postgresql: {
+     adapter: 'sails-pg-session',
+     host: 'localhost',
+     user: 'postgres',
+     password: 'Keyna1996',
+     database: 'app-releases'
+ }
 };
