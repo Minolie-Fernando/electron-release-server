@@ -28,7 +28,7 @@ module.exports.session = {
 //  // uncomment if you use sails-pg-session
  postgresql: {
      adapter: 'sails-pg-session',
-     host: 'localhost',
+     host: 'database-test-1.c7cskwcqmuzf.ap-southeast-1.rds.amazonaws.com',
      user: 'postgres',
      password: 'Keyna1996',
      database: 'app-releases'
