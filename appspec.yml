@@ -1,0 +1,17 @@
+version: 0.0
+os: linux
+files:
+  - source: /views/homepage.pug
+    destination: /views
+hooks:
+  BeforeInstall:
+    - location: scripts/wait.sh
+      timeout: 300
+      runas: root
+    - location: scripts/start_server
+      timeout: 300
+      runas: root
+  ApplicationStop:
+    - location: scripts/stop_server
+      timeout: 300
+      runas: root
