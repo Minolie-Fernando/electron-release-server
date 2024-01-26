@@ -222,6 +222,7 @@ module.exports = {
         }
 
         sails.log.debug('Time Filter', createdAtFilter);
+        sails.log.debug('platforms', platforms);
 
         return Version
           .find(UtilityService.getTruthyObject({
@@ -230,22 +231,31 @@ module.exports = {
             availability: availabilityFilter(),
             flavor
           }))
-          .populate('assets', {
-            platform: platforms
-          })
+          .populate('assets', 
+          // {
+          //   platform: platforms
+          // }
+          )
           .then(function(newerVersions) {
             // Sort versions which were added after the current one by semver in
             // descending order.
+
             newerVersions.sort(UtilityService.compareVersion);
 
             var latestVersion;
+
             sails.log.debug('Newer Versions', newerVersions);
+
+            sails.log.debug('2');
 
             // Generate the combined release notes for the newer versions while simultaneously filtering out
             // inapplicable versions and finding the latest version.
             var releaseNotes = _.reduce(
               newerVersions,
               function(prevNotes, newVersion) {
+                
+                sails.log.debug('Reduce function newVersion', newVersion.assets);
+                sails.log.debug('latestVersion', latestVersion);
                 // Filter out assets that are not zip files since we only
                 // support zip files for auto-updates.
                 newVersion.assets = _.filter(newVersion.assets, function(asset) {
@@ -280,10 +290,13 @@ module.exports = {
               },
               '');
 
+             sails.log.debug('currentVersion', currentVersion);
+
             var currentVersionName = _.get(currentVersion, 'name');
 
             sails.log.debug('Version candidate', latestVersion);
             sails.log.debug('Current version', currentVersionName);
+
 
             if (!latestVersion || latestVersion.name === currentVersionName) {
               sails.log.debug('Version candidate denied');
@@ -291,10 +304,16 @@ module.exports = {
             }
 
             sails.log.debug('Version candidate accepted');
-
+            sails.log.debug('appUrl '+sails.config.appUrl);
+            sails.log.debug(sails.config.appUrl + '/download/' + latestVersion.name + '/' + latestVersion.assets[0].platform + '?filetype=zip');
+sails.log.debug(url.resolve(
+              sails.config.appUrl,
+              '/download/' + latestVersion.name + '/' +
+              latestVersion.assets[0].platform + '?filetype=zip'
+            ));
             return res.ok({
               url: url.resolve(
-                sails.config.appUrl,
+                sails.config.appUrl + ':1337',
                 `/download/flavor/${flavor}/${latestVersion.name}/` +
                 latestVersion.assets[0].platform + '?filetype=zip'
               ),

@@ -21,7 +21,7 @@ services:
       DATA_ENCRYPTION_KEY: oIh0YgyxQbShuMjw4/laYcZnGKzvC3UniWFsqL0t4Zs=
       # Recommended: 63 random alpha-numeric characters
       # Generate using: https://www.grc.com/passwords.htm
-      TOKEN_SECRET: change_me_in_production
+      TOKEN_SECRET: WPE$oVW_viBbPeegv[:X}/jMvN7d)~WDD(oOqh{gjI?Mkk/LAJAgiWO9OZGKo7S
       APP_URL: 'localhost:8080'
       ASSETS_PATH: '/usr/src/electron-release-server/releases'
     depends_on:

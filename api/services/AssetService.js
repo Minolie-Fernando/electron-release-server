@@ -22,6 +22,8 @@ AssetService.serveFile = function (req, res, asset) {
       sails.log.error('Unable to access asset:', asset.fd);
     })
     .on('open', function () {
+      sails.log.debug('!!!!!!!!!!!!!!!',);
+
       // Send file properties in header
       res.setHeader(
         'Content-Disposition', 'attachment; filename*=UTF-8\'\'' + encodeURIComponent(asset.name)

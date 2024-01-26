@@ -202,7 +202,11 @@ module.exports = {
               return res.badRequest('No file was uploaded');
             }
 
+          sails.log.debug(' 1 uploadedFiles', uploadedFiles);
+
             var uploadedFile = uploadedFiles[0];
+
+            sails.log.debug(' 2uploadedFile', uploadedFile);
 
             if (uploadedFile.filename === 'RELEASES') {
               return res.badRequest(
@@ -213,6 +217,7 @@ module.exports = {
 
             sails.log.debug('Creating asset with name', data.name || uploadedFile.filename);
 
+            
             var hashPromise;
 
             if (fileExt === '.nupkg') {
