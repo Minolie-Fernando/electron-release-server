@@ -32,12 +32,16 @@ module.exports = {
    * Set the log level in production environment to "silent"                 *
    ***************************************************************************/
 
-  // log: {
-  //   level: "silent"
-  // }
+  log: {
+    level: "silent"
+  },
 
-  // auth: {
-  //   secret: 'temppass'
-  // }
+  auth: {
+    static: {
+      username: 'test',
+      password: 'test'
+    },
+    secret: process.env.TOKEN_SECRET
+  }
 
 };
