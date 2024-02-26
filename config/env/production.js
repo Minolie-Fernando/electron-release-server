@@ -16,7 +16,7 @@ module.exports = {
    * Set the default database connection for models in the production        *
    * environment (see config/datastores.js and config/models.js )            *
    ***************************************************************************/
-
+  appUrl: "http://47.128.229.3:8081",
   models: {
     datastore: 'postgresql',
     migrate: 'safe'
