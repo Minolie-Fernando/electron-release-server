@@ -27,7 +27,7 @@ services:
     depends_on:
       - db
     ports:
-      - '8080:80'
+      - '8081:80'
     entrypoint: ./scripts/wait.sh db:5432 -- npm start
     volumes:
       - ./releases:/usr/src/electron-release-server/releases

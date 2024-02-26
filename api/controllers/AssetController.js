@@ -304,6 +304,10 @@ module.exports = {
           });
       })
       .error(res.negotiate);
+  },
+
+  health: function(req, res) {
+    res.status(200).send('FFLSafe Update Center Health Check Validation!');
   }
 
 };

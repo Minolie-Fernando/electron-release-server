@@ -4,7 +4,7 @@ html
     meta(charset='utf-8')
     title #{process.env.WEBSITE_TITLE || 'Awesome Electron Desktop App'}
     meta(name='description', content='Download the interactive app for doing whatever it does.')
-    meta(name='author', content='Arek Sredzki')
+    meta(name='author', content='FFLSafe')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     base(href="/")
 
@@ -23,7 +23,7 @@ html
           .navbar-header
             a.pull-left(href='/')
               img.navbar-logo(src=process.env.WEBSITE_NAV_LOGO || '/images/logo.svg')
-            a.navbar-brand(href='/') #{process.env.WEBSITE_APP_TITLE || 'FFLSafe Update Center'}
+            a.navbar-brand(href='/') #{process.env.WEBSITE_APP_TITLE || 'Electron App'}
           .collapse.navbar-collapse
             ul.nav.navbar-nav
               li(ng-class="{ active: isActive('/')}")
@@ -33,6 +33,7 @@ html
                 a(href='/releases') Download
             auth-toolbar
     .container
+    h1 Hello, World!
       div(ng-view='')
       .footer
         p

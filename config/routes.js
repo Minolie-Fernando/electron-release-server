@@ -28,6 +28,8 @@ module.exports.routes = {
   '/admin': { view: 'homepage' },
   '/auth/login': { view: 'homepage' },
   '/auth/logout': { view: 'homepage' },
+  // '/health-check': { view: 'health-check'},
+  'GET /health-check': 'AssetController.health',
 
   'PUT /version/availability/:version/:timestamp': 'VersionController.availability',
 
