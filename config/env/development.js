@@ -16,7 +16,7 @@ module.exports = {
    * Set the default database connection for models in the development       *
    * environment (see config/datastores.js and config/models.js )            *
    ***************************************************************************/
-  appUrl: "http://47.128.229.3:8081",
+  appUrl: "http://47.128.229.3:8080",
   auth: {
     // Provide a set of credentials that can be used to access the admin interface.
     static: {
@@ -51,7 +51,7 @@ module.exports = {
     dirname: 'PATH_FOR_ASSETS',
   },
 
-  port: 8081,
+  port: 8080,
 
   environment: process.env.NODE_ENV || 'development'
 
