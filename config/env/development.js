@@ -17,8 +17,42 @@ module.exports = {
    * environment (see config/datastores.js and config/models.js )            *
    ***************************************************************************/
 
+  auth: {
+    // Provide a set of credentials that can be used to access the admin interface.
+    static: {
+      username: 'test',
+      password: 'test'
+    },
+  },
+
+  jwt: {
+    token_secret: 'WPE$oVW_viBbPeegv[:X}/jMvN7d)~WDD(oOqh{gjI?Mkk/LAJAgiWO9OZGKo7S'
+  },
+
   models: {
-    datastore: 'postgresql'
-  }
+    datastore: 'postgresql',
+
+    dataEncryptionKeys: {
+      default: '4rPrrLCqxLEesIqI3Kq5nfUQUQkf3K0A/29vm2uptQo='
+    },
+  },
+
+  datastores: {
+    postgresql: {
+      adapter: 'sails-postgresql',
+      host: 'localhost',//'database-test-1.c7cskwcqmuzf.ap-southeast-1.rds.amazonaws.com',
+      user: 'release_admin',
+      password: 'postgres',
+      database: 'releaseserver'
+    }
+  },
+
+  files: {
+    dirname: 'PATH_FOR_ASSETS',
+  },
+
+  port: 8080,
+
+  environment: process.env.NODE_ENV || 'development'
 
 };
