@@ -17,6 +17,9 @@ module.exports = {
    * environment (see config/datastores.js and config/models.js )            *
    ***************************************************************************/
   appUrl: "http://47.128.229.3:8081",
+  sockets: {
+    onlyAllowOrigins: ["http://47.128.229.3:8080", "http://localhost"]
+  },
   models: {
     datastore: 'postgresql',
     migrate: 'safe'
