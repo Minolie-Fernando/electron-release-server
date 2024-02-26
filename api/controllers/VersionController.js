@@ -254,8 +254,6 @@ module.exports = {
 
             var latestVersion;
 
-            sails.log.debug('Newer Versions', newerVersions);
-
             sails.log.debug('2');
 
             // Generate the combined release notes for the newer versions while simultaneously filtering out
@@ -269,7 +267,7 @@ module.exports = {
                 // Filter out assets that are not zip files since we only
                 // support zip files for auto-updates.
                 newVersion.assets = _.filter(newVersion.assets, function(asset) {
-                  return asset.filetype === '.zip';
+                  return asset.filetype === '.zip' || asset.filetype === '.nupkg';
                 });
 
                 // If one of the assets for this verison apply to our desired
@@ -277,6 +275,8 @@ module.exports = {
                 if (!newVersion.assets.length) {
                   return prevNotes;
                 }
+
+                sails.log.debug('semver.lt(version, newVersion.name)', semver.lt(version, newVersion.name));
 
                 // If this is the first version we've found that is newer than
                 // the current version, then we will use it as the latest.
