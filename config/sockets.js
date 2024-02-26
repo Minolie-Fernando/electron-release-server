@@ -112,7 +112,9 @@ module.exports.sockets = {
   //
   //   // (`false` would reject the connection)
   // },
-
+  sockets: {
+    onlyAllowOrigins: ["http://47.128.229.3:8080", "http://localhost"]
+  },
 
   /***************************************************************************
   *                                                                          *
