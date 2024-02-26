@@ -51,7 +51,7 @@ module.exports = {
     dirname: 'PATH_FOR_ASSETS',
   },
 
-  port: 8080,
+  port: 8081,
 
   environment: process.env.NODE_ENV || 'development'
 
