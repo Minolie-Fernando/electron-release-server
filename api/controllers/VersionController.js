@@ -199,6 +199,9 @@ module.exports = {
       flavor
     });
 
+    sails.log.debug('version', version);
+    sails.log.debug('flavor', flavor);
+
     // Get specified version object, it's time will be used for the general
     // cutoff.
     Version
@@ -213,6 +216,9 @@ module.exports = {
         applicableChannels = ChannelService.getApplicableChannels(channel);
         sails.log.debug('Applicable Channels', applicableChannels);
 
+        sails.log.debug('currentVersion', currentVersion);
+        sails.log.debug('createdAtFilter', createdAtFilter);
+
         if (currentVersion) {
           createdAtFilter = {
             '>': currentVersion.createdAt
@@ -223,6 +229,8 @@ module.exports = {
 
         sails.log.debug('Time Filter', createdAtFilter);
         sails.log.debug('platforms', platforms);
+        sails.log.debug('sails.config.appUrl ', sails.config.appUrl );
+
 
         return Version
           .find(UtilityService.getTruthyObject({
@@ -239,6 +247,8 @@ module.exports = {
           .then(function(newerVersions) {
             // Sort versions which were added after the current one by semver in
             // descending order.
+
+            sails.log.debug('newerVersions ', newerVersions );
 
             newerVersions.sort(UtilityService.compareVersion);
 
@@ -292,11 +302,11 @@ module.exports = {
 
              sails.log.debug('currentVersion', currentVersion);
 
+
             var currentVersionName = _.get(currentVersion, 'name');
 
             sails.log.debug('Version candidate', latestVersion);
             sails.log.debug('Current version', currentVersionName);
-
 
             if (!latestVersion || latestVersion.name === currentVersionName) {
               sails.log.debug('Version candidate denied');
@@ -304,7 +314,6 @@ module.exports = {
             }
 
             sails.log.debug('Version candidate accepted');
-            sails.log.debug('appUrl '+sails.config.appUrl);
             sails.log.debug(sails.config.appUrl + '/download/' + latestVersion.name + '/' + latestVersion.assets[0].platform + '?filetype=zip');
 sails.log.debug(url.resolve(
               sails.config.appUrl,
