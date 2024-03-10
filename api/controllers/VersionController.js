@@ -324,7 +324,7 @@ sails.log.debug(url.resolve(
             sails.log.debug('platform[0]', platform);
 
             let osxArm64Asset;
-            if(platform === 'osx_arm64' || platform === 'osx') {
+            if(platform === 'osx_arm64' || platform === 'osx_64') {
             sails.log.debug('!!!!!!!!!!!!!!!!');
 
             // check why the zip file is not being taken
