@@ -328,7 +328,7 @@ sails.log.debug(url.resolve(
             sails.log.debug('!!!!!!!!!!!!!!!!');
 
             // check why the zip file is not being taken
-               osxArm64Asset = latestVersion.assets.find((asset) =>  { console.log("asset", asset);  return asset.platform === 'osx_arm64' && asset.filetype === '.zip' });
+               osxArm64Asset = latestVersion.assets.find((asset) =>  { console.log("asset", asset);  return asset.platform === 'osx_arm64' });
             } else {
               osxArm64Asset = latestVersion.assets.find(asset => asset.platform === 'windows_64' && asset.filetype === '.nupkg');
 
