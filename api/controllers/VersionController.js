@@ -323,7 +323,7 @@ sails.log.debug(url.resolve(
 
             sails.log.debug('platform[0]', platform);
 
-            let osxArm64Asset;osx_arm64
+            let osxArm64Asset;
             if(platform === 'osx_arm64' || platform === 'osx_64' || platform === 'osx') {
             sails.log.debug('!!!!!!!!!!!!!!!!');
             sails.log.debug('latestVersion.assets', latestVersion.assets);
