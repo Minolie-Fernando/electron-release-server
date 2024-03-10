@@ -18,7 +18,7 @@ module.exports = {
    ***************************************************************************/
   appUrl: "http://47.128.229.3:8080",
   sockets: {
-    onlyAllowOrigins: ["http://47.128.229.3:8080", "http://localhost"]
+    onlyAllowOrigins: ["http://47.128.229.3:8080", "http://localhost:8081"]
   },
   auth: {
     // Provide a set of credentials that can be used to access the admin interface.
