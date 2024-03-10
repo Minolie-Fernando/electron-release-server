@@ -324,11 +324,11 @@ sails.log.debug(url.resolve(
             sails.log.debug('platform[0]', platform);
 
             let osxArm64Asset;
-            if(platform === 'osx_arm64' || platform === 'osx_64') {
+            if(platform === 'osx_arm64' || platform === 'osx_64' || platform === 'osx') {
             sails.log.debug('!!!!!!!!!!!!!!!!');
 
             // check why the zip file is not being taken
-               osxArm64Asset = latestVersion.assets.find((asset) =>  { console.log("asset", asset);  return asset.platform === 'osx_arm64' });
+               osxArm64Asset = latestVersion.assets.find((asset) =>  { console.log("asset", asset);  return asset.platform === 'osx_arm64' || platform === 'osx_arm64' || platform === 'osx_64' || platform === 'osx'});
             } else {
               osxArm64Asset = latestVersion.assets.find(asset => asset.platform === 'windows_64' && asset.filetype === '.nupkg');
 
