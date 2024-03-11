@@ -314,14 +314,6 @@ module.exports = {
             }
 
             sails.log.debug('Version candidate accepted');
-            sails.log.debug(sails.config.appUrl + '/download/' + latestVersion.name + '/' + latestVersion.assets[0].platform + '?filetype=zip');
-sails.log.debug(url.resolve(
-              sails.config.appUrl,
-              '/download/' + latestVersion.name + '/' +
-              latestVersion.assets[0].platform + '?filetype=zip'
-            ));
-
-            sails.log.debug('platform[0]', platform);
 
             let osxArm64Asset;
             if(platform === 'osx_arm64' || platform === 'osx_64' || platform === 'osx') {
@@ -335,10 +327,12 @@ sails.log.debug(url.resolve(
             }
 
             sails.log.debug('osxArm64Asset', osxArm64Asset);
-
+            sails.log.debug('sails.config.appUrl', sails.config.appUrl,
+            `/download/flavor/${flavor}/${latestVersion.name}/` +
+            osxArm64Asset.platform + '?filetype=zip')
             return res.ok({
               url: url.resolve(
-                sails.config.appUrl + ':1337',
+                sails.config.appUrl,
                 `/download/flavor/${flavor}/${latestVersion.name}/` +
                 osxArm64Asset.platform + '?filetype=zip'
               ),
