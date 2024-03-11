@@ -317,19 +317,15 @@ module.exports = {
 
             let osxArm64Asset;
             if(platform === 'osx_arm64' || platform === 'osx_64' || platform === 'osx') {
-            sails.log.debug('!!!!!!!!!!!!!!!!');
             sails.log.debug('latestVersion.assets', latestVersion.assets);
-            // check why the zip file is not being taken
-               osxArm64Asset = latestVersion.assets.find((asset) =>  { console.log("asset", asset);  return asset.platform === 'osx_arm64'|| platform === 'osx_64' || platform === 'osx'});
+               osxArm64Asset = latestVersion.assets.find((asset) =>  { console.log("asset", asset);  return asset.platform === 'osx_arm64'|| platform === 'osx_64' || platform === 'osx' && filetype === '.zip'});
             } else {
               osxArm64Asset = latestVersion.assets.find(asset => asset.platform === 'windows_64' && asset.filetype === '.nupkg');
 
             }
 
             sails.log.debug('osxArm64Asset', osxArm64Asset);
-            sails.log.debug('sails.config.appUrl', sails.config.appUrl,
-            `/download/flavor/${flavor}/${latestVersion.name}/` +
-            osxArm64Asset.platform + '?filetype=zip')
+    
             return res.ok({
               url: url.resolve(
                 sails.config.appUrl,
