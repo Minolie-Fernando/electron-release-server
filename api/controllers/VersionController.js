@@ -316,15 +316,18 @@ module.exports = {
             sails.log.debug('Version candidate accepted');
 
             let osxArm64Asset;
-            if(platform === 'osx_arm64' || platform === 'osx_64' || platform === 'osx') {
-            sails.log.debug('latestVersion.assets', latestVersion.assets);
-               osxArm64Asset = latestVersion.assets.find((asset) =>  { console.log("asset", asset);  return asset.platform === 'osx_arm64'|| platform === 'osx_64' || platform === 'osx' && filetype === '.zip'});
+            if (platform === 'osx_arm64' || platform === 'osx_64' || platform === 'osx') {
+                sails.log.debug('latestVersion.assets', latestVersion.assets);
+                osxArm64Asset = latestVersion.assets.find((asset) => {
+                    console.log("asset", asset);
+                    return (asset.platform === 'osx_arm64' || asset.platform === 'osx_64' || asset.platform === 'osx') && asset.filetype === '.zip';
+                });
             } else {
-              osxArm64Asset = latestVersion.assets.find(asset => asset.platform === 'windows_64' && asset.filetype === '.nupkg');
-
+                osxArm64Asset = latestVersion.assets.find(asset => asset.platform === 'windows_64' && asset.filetype === '.nupkg');
             }
-
+            
             sails.log.debug('osxArm64Asset', osxArm64Asset);
+            
     
             return res.ok({
               url: url.resolve(
