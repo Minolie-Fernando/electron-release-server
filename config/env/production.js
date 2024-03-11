@@ -16,9 +16,9 @@ module.exports = {
    * Set the default database connection for models in the production        *
    * environment (see config/datastores.js and config/models.js )            *
    ***************************************************************************/
-  appUrl: "http://47.128.229.3:8081",
+  appUrl: "https://update.minz.lol",
   sockets: {
-    onlyAllowOrigins: ["http://47.128.229.3:8080", "http://localhost"]
+    onlyAllowOrigins: ["http://47.128.229.3:8080", "http://localhost", "https://update.minz.lol"]
   },
   models: {
     datastore: 'postgresql',

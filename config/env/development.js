@@ -16,9 +16,9 @@ module.exports = {
    * Set the default database connection for models in the development       *
    * environment (see config/datastores.js and config/models.js )            *
    ***************************************************************************/
-  appUrl: "http://47.128.229.3:8080",
+  appUrl: "https://update.minz.lol",
   sockets: {
-    onlyAllowOrigins: ["http://47.128.229.3:8080", "http://localhost:8081"]
+    onlyAllowOrigins: ["http://47.128.229.3:8080", "http://localhost:8081", "https://update.minz.lol"]
   },
   auth: {
     // Provide a set of credentials that can be used to access the admin interface.
