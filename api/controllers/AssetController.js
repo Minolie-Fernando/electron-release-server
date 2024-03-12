@@ -72,6 +72,8 @@ module.exports = {
 
         sails.log.debug('Asset requested with options', assetOptions);
 
+        sails.log.debug('Asset version', version);
+        sails.log.debug('Asset channel', channel);
         if (version || channel) {
           Version
             .find(UtilityService.getTruthyObject({
@@ -88,6 +90,8 @@ module.exports = {
             .limit(10)
             .populate('assets', assetOptions)
             .then(function(versions) {
+
+              sails.log.debug('Asset versions', versions);
               if (!versions || !versions.length) {
                 return resolve();
               }
@@ -127,6 +131,9 @@ module.exports = {
         }
       })
       .then(function(asset) {
+
+        sails.log.debug('Asset asset', asset);
+        
         if (!asset || !asset.fd) {
           let noneFoundMessage = `The ${flavor} flavor has no download available`;
 
