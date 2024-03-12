@@ -71,9 +71,6 @@ module.exports = {
         });
 
         sails.log.debug('Asset requested with options', assetOptions);
-
-        sails.log.debug('Asset version --> ', version);
-        sails.log.debug('Asset channel', channel);
         if (version || channel) {
           Version
             .find(UtilityService.getTruthyObject({

@@ -20,16 +20,35 @@ module.exports = {
   sockets: {
     onlyAllowOrigins: ["http://47.128.229.3:8080", "http://localhost", "https://update.minz.lol"]
   },
+  auth: {
+    // Provide a set of credentials that can be used to access the admin interface.
+    static: {
+      username: 'test',
+      password: 'test'
+    },
+  },
+  jwt: {
+    token_secret: 'WPE$oVW_viBbPeegv[:X}/jMvN7d)~WDD(oOqh{gjI?Mkk/LAJAgiWO9OZGKo7S'
+  },
   models: {
     datastore: 'postgresql',
-    migrate: 'safe'
+    migrate: 'alter'
   },
 
+  datastores: {
+    postgresql: {
+      adapter: 'sails-postgresql',
+      host: 'localhost',//'database-test-1.c7cskwcqmuzf.ap-southeast-1.rds.amazonaws.com',
+      user: 'release_admin',
+      password: 'postgres',
+      database: 'releaseserver'
+    }
+  },
   /***************************************************************************
    * Set the port in the production environment to 80                        *
    ***************************************************************************/
 
-  port: 5014,
+  port: 8080,
 
   /***************************************************************************
    * Set the log level in production environment to "silent"                 *
