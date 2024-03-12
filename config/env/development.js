@@ -34,7 +34,7 @@ module.exports = {
 
   models: {
     datastore: 'postgresql',
-
+    migrate: 'alter',
     dataEncryptionKeys: {
       default: '4rPrrLCqxLEesIqI3Kq5nfUQUQkf3K0A/29vm2uptQo='
     },
