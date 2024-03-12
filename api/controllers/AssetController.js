@@ -72,7 +72,7 @@ module.exports = {
 
         sails.log.debug('Asset requested with options', assetOptions);
 
-        sails.log.debug('Asset version', version);
+        sails.log.debug('Asset version --> ', version);
         sails.log.debug('Asset channel', channel);
         if (version || channel) {
           Version
@@ -315,6 +315,85 @@ module.exports = {
 
   health: function(req, res) {
     res.status(200).send('FFLSafe Update Center Health Check Validation!');
-  }
+  },
 
+  latestVersion: function(req, res) {
+    let channel = req.params.channel;
+    let version = req.params.version || undefined;
+    const filename = req.params.filename;
+    let filetype = req.query.filetype;
+    const flavor = req.params.flavor || 'default';
+  
+    sails.log.debug('Request for latest version with channel:', channel);
+  
+    let platforms;
+    let platform = req.param('platform');
+    if (platform) {
+      platforms = [platform];
+    }
+  
+    sails.log.debug('Platform from request:', platform);
+  
+    // Normalize filetype
+    filetype = filetype && filetype[0] !== '.' ? '.' + filetype : filename ? filename.substring(filename.lastIndexOf('.')) : undefined;
+  
+    // Determine platforms based on request
+    if (!platforms) {
+      platforms = PlatformService.detectFromRequest(req);
+      if (!platforms) {
+        sails.log.error('Failed to detect platform from request.');
+        return res.serverError('Failed to detect platform.');
+      }
+      platforms = PlatformService.sanitize(platforms);
+    }
+  
+    const assetOptions = UtilityService.getTruthyObject({ platform: platforms, filetype });
+  
+    if (!version) {
+      channel = channel || 'stable';
+    }
+  
+    if (version || channel) {
+      Version.find(UtilityService.getTruthyObject({ name: version, channel, flavor }))
+        .sort([{ createdAt: 'desc' }])
+        .limit(10)
+        .populate('assets', assetOptions)
+        .then(versions => {
+          sails.log.debug('Found versions:', versions);
+  
+          // versions.sort(UtilityService.compareVersion);
+          // for (let i = 0; i < versions.length; i++) {
+          //   if (versions[i].assets && versions[i].assets.length) {
+          //     return res.ok(versions[i].name);
+          //   }
+          // }
+  
+          // sails.log.debug('No versions with assets found.');
+          return res.ok( {
+            "version" : versions[0].name 
+          });
+          // return res.notFound('No available versions with assets.');
+        })
+        .catch(error => {
+          sails.log.error('Error retrieving versions:', error);
+          return res.serverError('Error retrieving versions.');
+        });
+    } else {
+      Asset.find(assetOptions)
+        .sort([{ createdAt: 'desc' }])
+        .limit(1)
+        .then(assets => {
+          if (assets.length > 0) {
+            return res.ok(assets[0].version);
+          } else {
+            return res.notFound('No assets found.');
+          }
+        })
+        .catch(error => {
+          sails.log.error('Error retrieving assets:', error);
+          return res.serverError('Error retrieving assets.');
+        });
+    }
+  }
+  
 };

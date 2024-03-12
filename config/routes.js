@@ -30,6 +30,8 @@ module.exports.routes = {
   '/auth/logout': { view: 'homepage' },
   // '/health-check': { view: 'health-check'},
   'GET /health-check': 'AssetController.health',
+  'GET /latest-version/:platform?': 'AssetController.latestVersion',
+
 
   'PUT /version/availability/:version/:timestamp': 'VersionController.availability',
 
