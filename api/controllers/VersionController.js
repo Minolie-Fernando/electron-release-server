@@ -320,7 +320,7 @@ module.exports = {
                 sails.log.debug('latestVersion.assets', latestVersion.assets);
                 osxArm64Asset = latestVersion.assets.find((asset) => {
                     console.log("asset", asset);
-                    return (asset.platform === 'osx_arm64' || asset.platform === 'osx_64' || asset.platform === 'osx') && asset.filetype === '.zip';
+                    return (asset.platform === platform) && asset.filetype === '.zip';
                 });
             } else {
                 osxArm64Asset = latestVersion.assets.find(asset => asset.platform === 'windows_64' && asset.filetype === '.nupkg');
