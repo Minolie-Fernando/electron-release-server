@@ -314,6 +314,7 @@ module.exports = {
             }
 
             sails.log.debug('Version candidate accepted');
+            sails.log.debug('platform -->', platform);
 
             let osxArm64Asset;
             if (platform === 'osx_arm64' || platform === 'osx_64' || platform === 'osx') {
